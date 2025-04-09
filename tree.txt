@@ -1,0 +1,421 @@
+PS C:\Users\Halil\Desktop\Project\Distributed-Security-and-Anomaly-Detection-Architecture> tree /F 
+Folder PATH listing
+Volume serial number is 3625-5824
+C:.
+│   .dockerignore
+│   .gitignore
+│   docker-compose.yml
+│   README.md
+│   startup.sh
+│
+├───anomaly-detection-engine
+│   │   app.py
+│   │   dataset_loader.py
+│   │   docker-compose.yml
+│   │   Dockerfile
+│   │   model_evaluation.py
+│   │   requirements.txt
+│   │   synthetic_log_generator.py
+│   │   unsw_nb15_integration.py
+│   │
+│   ├───dataset
+│   │   └───unsw_nb15_csv
+│   │           NUSW-NB15_features.csv
+│   │           UNSW-NB15_LIST_EVENTS.csv
+│   │           UNSW_NB15_testing-set.csv
+│   │           UNSW_NB15_training-set.csv
+│   │
+│   ├───features
+│   └───models
+│       │   isolation_forest.joblib
+│       │
+│       └───lstm_model
+├───log-collector
+│   │   Dockerfile
+│   │   filebeat.yml
+│   │   HELP.md
+│   │   mvnw
+│   │   mvnw.cmd
+│   │   pom.xml
+│   │
+│   ├───.mvn
+│   │   └───wrapper
+│   │           maven-wrapper.properties
+│   │
+│   ├───.vscode
+│   ├───build
+│   │   └───tmp
+│   │       ├───.cache
+│   │       │   └───expanded
+│   │       │       └───zip_ff7bf8f04f99dc306508d1c81e47a68b
+│   │       │           │   about.html
+│   │       │           │   jacocoagent.jar
+│   │       │           │
+│   │       │           ├───META-INF
+│   │       │           │   │   MANIFEST.MF
+│   │       │           │   │
+│   │       │           │   └───maven
+│   │       │           │       └───org.jacoco
+│   │       │           │           └───org.jacoco.agent
+│   │       │           │                   pom.properties
+│   │       │           │                   pom.xml
+│   │       │           │
+│   │       │           └───org
+│   │       │               └───jacoco
+│   │       │                   └───agent
+│   │       │                           AgentJar.class
+│   │       │                           package-info.class
+│   │       │
+│   │       ├───assemble
+│   │       ├───bootBuildImage
+│   │       ├───bootJar
+│   │       │       MANIFEST.MF
+│   │       │
+│   │       ├───bootRun
+│   │       ├───bootTestRun
+│   │       ├───build
+│   │       ├───buildDependents
+│   │       ├───buildDocker
+│   │       ├───buildEnvironment
+│   │       ├───buildNeeded
+│   │       ├───check
+│   │       ├───classes
+│   │       ├───clean
+│   │       ├───compileJava
+│   │       ├───compileTestJava
+│   │       ├───components
+│   │       ├───dependencies
+│   │       ├───dependencyInsight
+│   │       ├───dependencyManagement
+│   │       ├───dependentComponents
+│   │       ├───help
+│   │       ├───init
+│   │       ├───jacocoTestCoverageVerification
+│   │       ├───jacocoTestReport
+│   │       ├───jar
+│   │       │       MANIFEST.MF
+│   │       │
+│   │       ├───javadoc
+│   │       ├───javaToolchains
+│   │       ├───model
+│   │       ├───outgoingVariants
+│   │       ├───prepareKotlinBuildScriptModel
+│   │       ├───processResources
+│   │       ├───processTestResources
+│   │       ├───projects
+│   │       ├───properties
+│   │       ├───resolvableConfigurations
+│   │       ├───resolveMainClassName
+│   │       ├───resolveTestMainClassName
+│   │       ├───runSingle
+│   │       ├───tasks
+│   │       ├───test
+│   │       ├───testClasses
+│   │       ├───updateDaemonJvm
+│   │       └───wrapper
+│   ├───src
+│   │   ├───main
+│   │   │   ├───java
+│   │   │   │   └───com
+│   │   │   │       └───security
+│   │   │   │           └───logcollector
+│   │   │   │               │   LogCollectorApplication.java
+│   │   │   │               │
+│   │   │   │               ├───config
+│   │   │   │               │       LogWatcherConfig.java
+│   │   │   │               │
+│   │   │   │               └───service
+│   │   │   │                       LogWatcherService.java
+│   │   │   │
+│   │   │   └───resources
+│   │   │       │   application.properties
+│   │   │       │   locback-spring.xml
+│   │   │       │
+│   │   │       ├───static
+│   │   │       └───templates
+│   │   └───test
+│   │       └───java
+│   │           └───com
+│   │               └───security
+│   │                   └───logcollector
+│   │                       └───log_collector
+│   │                               LogCollectorApplicationTests.java
+│   │
+│   └───target
+│       ├───classes
+│       │   │   application.properties
+│       │   │   locback-spring.xml
+│       │   │
+│       │   └───com
+│       │       └───security
+│       │           └───logcollector
+│       │               │   LogCollectorApplication.class
+│       │               │
+│       │               ├───config
+│       │               │       LogWatcherConfig.class
+│       │               │
+│       │               ├───log_collector
+│       │               │       LogCollectorApplication.class
+│       │               │
+│       │               └───service
+│       │                       LogWatcherService$1.class
+│       │                       LogWatcherService.class
+│       │
+│       ├───generated-sources
+│       │   └───annotations
+│       ├───generated-test-sources
+│       │   └───test-annotations
+│       ├───maven-status
+│       │   └───maven-compiler-plugin
+│       │       └───compile
+│       │           └───default-compile
+│       │                   inputFiles.lst
+│       │
+│       └───test-classes
+│           └───com
+│               └───security
+│                   └───logcollector
+│                       └───log_collector
+│                               LogCollectorApplicationTests.class
+│
+├───security-event-manager
+│   │   .gitattributes
+│   │   .gitignore
+│   │   Dockerfile
+│   │   HELP.md
+│   │   mvnw
+│   │   mvnw.cmd
+│   │   pom.xml
+│   │
+│   ├───.mvn
+│   │   └───wrapper
+│   │           maven-wrapper.properties
+│   │
+│   ├───.vscode
+│   │       NEWLY_CREATED_BY_SPRING_INITIALIZR
+│   │
+│   ├───build
+│   │   └───tmp
+│   │       ├───assemble
+│   │       ├───bootBuildImage
+│   │       ├───bootJar
+│   │       │       MANIFEST.MF
+│   │       │
+│   │       ├───bootRun
+│   │       ├───bootTestRun
+│   │       ├───build
+│   │       ├───buildDependents
+│   │       ├───buildEnvironment
+│   │       ├───buildNeeded
+│   │       ├───check
+│   │       ├───classes
+│   │       ├───clean
+│   │       ├───compileJava
+│   │       ├───compileTestJava
+│   │       ├───components
+│   │       ├───dependencies
+│   │       ├───dependencyInsight
+│   │       ├───dependencyManagement
+│   │       ├───dependentComponents
+│   │       ├───help
+│   │       ├───init
+│   │       ├───jar
+│   │       │       MANIFEST.MF
+│   │       │
+│   │       ├───javadoc
+│   │       ├───javaToolchains
+│   │       ├───model
+│   │       ├───outgoingVariants
+│   │       ├───prepareKotlinBuildScriptModel
+│   │       ├───processResources
+│   │       ├───processTestResources
+│   │       ├───projects
+│   │       ├───properties
+│   │       ├───resolvableConfigurations
+│   │       ├───resolveMainClassName
+│   │       ├───resolveTestMainClassName
+│   │       ├───runSingle
+│   │       ├───tasks
+│   │       ├───test
+│   │       ├───testClasses
+│   │       ├───updateDaemonJvm
+│   │       └───wrapper
+│   ├───src
+│   │   ├───main
+│   │   │   ├───java
+│   │   │   │   └───com
+│   │   │   │       └───security
+│   │   │   │           └───eventmanager
+│   │   │   │               │   SecurityEventManagerApplication.java
+│   │   │   │               │
+│   │   │   │               ├───controller
+│   │   │   │               │       SecurityEventController.java
+│   │   │   │               │       WebSocketController.java
+│   │   │   │               │
+│   │   │   │               ├───exception
+│   │   │   │               │       GlobalExceptionHandler.java
+│   │   │   │               │
+│   │   │   │               ├───kafka
+│   │   │   │               │       SecurityEventListener.java
+│   │   │   │               │
+│   │   │   │               ├───model
+│   │   │   │               │       SecurityEvent.java
+│   │   │   │               │
+│   │   │   │               ├───repository
+│   │   │   │               │       SecurityEventRepository.java
+│   │   │   │               │
+│   │   │   │               └───service
+│   │   │   │                       SecurityEventService.java
+│   │   │   │
+│   │   │   └───resources
+│   │   │       │   application.yml
+│   │   │       │
+│   │   │       ├───static
+│   │   │       └───templates
+│   │   └───test
+│   │       └───java
+│   │           └───com
+│   │               └───security
+│   │                   └───eventmanager
+│   │                       └───security_event_manager
+│   │                               SecurityEventManagerApplicationTests.java
+│   │
+│   └───target
+│       ├───classes
+│       │   │   application.properties
+│       │   │
+│       │   └───com
+│       │       └───security
+│       │           └───eventmanager
+│       │               └───security_event_manager
+│       │                       SecurityEventManagerApplication.class
+│       │
+│       ├───generated-sources
+│       │   └───annotations
+│       ├───generated-test-sources
+│       │   └───test-annotations
+│       └───test-classes
+│           └───com
+│               └───security
+│                   └───eventmanager
+│                       └───security_event_manager
+│                               SecurityEventManagerApplicationTests.class
+│
+└───web-dashboard
+    ├───backend
+    │   │   .gitattributes
+    │   │   .gitignore
+    │   │   Dockerfile
+    │   │   HELP.md
+    │   │   mvnw
+    │   │   mvnw.cmd
+    │   │   pom.xml
+    │   │
+    │   ├───.mvn
+    │   │   └───wrapper
+    │   │           maven-wrapper.properties
+    │   │
+    │   ├───.vscode
+    │   ├───src
+    │   │   ├───main
+    │   │   │   ├───java
+    │   │   │   │   └───com
+    │   │   │   │       └───security
+    │   │   │   │           └───dashboard
+    │   │   │   │               │   DashboardApplication.java
+    │   │   │   │               │
+    │   │   │   │               ├───config
+    │   │   │   │               │       SecurityConfig.java
+    │   │   │   │               │       WebConfig.java
+    │   │   │   │               │
+    │   │   │   │               ├───controller
+    │   │   │   │               │       AuthController.java
+    │   │   │   │               │       EventController.java
+    │   │   │   │               │       UserController.java
+    │   │   │   │               │
+    │   │   │   │               ├───model
+    │   │   │   │               │       User.java
+    │   │   │   │               │
+    │   │   │   │               ├───repository
+    │   │   │   │               │       UserRepository.java
+    │   │   │   │               │
+    │   │   │   │               ├───security
+    │   │   │   │               │       JwtAuthenticationFilter.java
+    │   │   │   │               │       JwtAuthorizationFilter.java
+    │   │   │   │               │       JwtProperties.java
+    │   │   │   │               │
+    │   │   │   │               └───service
+    │   │   │   │                       EventProxyService.java
+    │   │   │   │                       UserService.java
+    │   │   │   │
+    │   │   │   └───resources
+    │   │   │       │   application.yml
+    │   │   │       │
+    │   │   │       ├───static
+    │   │   │       └───templates
+    │   │   └───test
+    │   │       └───java
+    │   │           └───com
+    │   │               └───security
+    │   │                   └───dashboard
+    │   │                       └───backend
+    │   │                               BackendApplicationTests.java
+    │   │
+    │   └───target
+    │       ├───classes
+    │       │   │   application.properties
+    │       │   │   application.yml
+    │       │   │
+    │       │   └───com
+    │       │       └───security
+    │       │           └───dashboard
+    │       │               └───backend
+    │       │                       BackendApplication.class
+    │       │
+    │       ├───generated-sources
+    │       │   └───annotations
+    │       ├───generated-test-sources
+    │       │   └───test-annotations
+    │       ├───maven-status
+    │       │   └───maven-compiler-plugin
+    │       │       └───compile
+    │       │           └───default-compile
+    │       └───test-classes
+    │           └───com
+    │               └───security
+    │                   └───dashboard
+    │                       └───backend
+    │                               BackendApplicationTests.class
+    │
+    └───frontend
+        │   docker-compose.yml
+        │   Dockerfile
+        │   nginx.conf
+        │   package.json
+        │
+        └───src
+            │   App.css
+            │   App.js
+            │   index.js
+            │
+            ├───components
+            │       Layout.js
+            │       NavigationBar.js
+            │       SideBar.js
+            │
+            ├───contexts
+            │       AuthContext.js
+            │       EventsContext.js
+            │
+            ├───pages
+            │       Dashboard.js
+            │       EventDetail.js
+            │       EventList.js
+            │       Login.js
+            │       NotFound.js
+            │       Settings.js
+            │       Statistics.js
+            │
+            └───services
+                    api.service.js
+                    websocket.service.js
